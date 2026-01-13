@@ -345,10 +345,10 @@ graph TB
     
     subgraph Layer1["📡 Layer 1: Presentation Layer<br/>(REST Controllers)"]
         direction LR
-        UC["`**UserController**<br/>/api/users`"]
-        PC["`**ProductController**<br/>/api/products`"]
-        CC["`**CartController**<br/>/api/cart`"]
-        OC["`**OrderController**<br/>/api/orders`"]
+        UC["UserController<br/>/api/users"]
+        PC["ProductController<br/>/api/products"]
+        CC["CartController<br/>/api/cart"]
+        OC["OrderController<br/>/api/orders"]
     end
     
     subgraph DTOs["📦 Data Transfer Objects<br/>(Request/Response)"]
@@ -363,18 +363,18 @@ graph TB
     
     subgraph Layer2["⚙️ Layer 2: Business Logic Layer<br/>(Services)"]
         direction LR
-        US["`**UserService**<br/>User Management`"]
-        PS["`**ProductService**<br/>Product CRUD`"]
-        CS["`**CartService**<br/>Cart Operations`"]
-        OS["`**OrderService**<br/>Order Processing`"]
+        US["UserService<br/>User Management"]
+        PS["ProductService<br/>Product CRUD"]
+        CS["CartService<br/>Cart Operations"]
+        OS["OrderService<br/>Order Processing"]
     end
     
     subgraph Layer3["💾 Layer 3: Data Access Layer<br/>(Repositories)"]
         direction LR
-        UR["`**UserRepository**<br/>User Data**"]
-        PR["`**ProductRepository**<br/>Product Data**"]
-        CR["`**CartItemRepository**<br/>Cart Data**"]
-        OR["`**OrderRepository**<br/>Order Data**"]
+        UR["UserRepository<br/>User Data"]
+        PR["ProductRepository<br/>Product Data"]
+        CR["CartItemRepository<br/>Cart Data"]
+        OR["OrderRepository<br/>Order Data"]
     end
     
     subgraph Entities["🗃️ Entity Models<br/>(JPA Entities)"]
