@@ -335,30 +335,24 @@ ecom-application/
 
 ### Layer Architecture
 
+The application follows a **3-Layer Architecture** pattern with clear separation of concerns:
+
 ```mermaid
-graph TD
-    subgraph "Presentation Layer"
-        UC[UserController]
-        PC[ProductController]
-        CC[CartController]
-        OC[OrderController]
+graph TB
+    subgraph Client["🌐 Client Layer"]
+        HTTP[HTTP/REST Client]
     end
     
-    subgraph "Business Logic Layer"
-        US[UserService]
-        PS[ProductService]
-        CS[CartService]
-        OS[OrderService]
+    subgraph Layer1["📡 Layer 1: Presentation Layer<br/>(REST Controllers)"]
+        direction LR
+        UC["`**UserController**<br/>/api/users`"]
+        PC["`**ProductController**<br/>/api/products`"]
+        CC["`**CartController**<br/>/api/cart`"]
+        OC["`**OrderController**<br/>/api/orders`"]
     end
     
-    subgraph "Data Access Layer"
-        UR[UserRepository]
-        PR[ProductRepository]
-        CR[CartItemRepository]
-        OR[OrderRepository]
-    end
-    
-    subgraph "Data Transfer Objects"
+    subgraph DTOs["📦 Data Transfer Objects<br/>(Request/Response)"]
+        direction TB
         UReq[UserRequest]
         URes[UserResponse]
         PReq[ProductRequest]
@@ -367,61 +361,160 @@ graph TD
         ORes[OrderResponse]
     end
     
-    subgraph "Entity Models"
-        UM[User]
-        AM[Address]
-        PM[Product]
-        CM[CartItem]
-        OM[Order]
-        OIM[OrderItem]
+    subgraph Layer2["⚙️ Layer 2: Business Logic Layer<br/>(Services)"]
+        direction LR
+        US["`**UserService**<br/>User Management`"]
+        PS["`**ProductService**<br/>Product CRUD`"]
+        CS["`**CartService**<br/>Cart Operations`"]
+        OS["`**OrderService**<br/>Order Processing`"]
     end
     
-    UC --> US
-    PC --> PS
-    CC --> CS
-    OC --> OS
+    subgraph Layer3["💾 Layer 3: Data Access Layer<br/>(Repositories)"]
+        direction LR
+        UR["`**UserRepository**<br/>User Data**"]
+        PR["`**ProductRepository**<br/>Product Data**"]
+        CR["`**CartItemRepository**<br/>Cart Data**"]
+        OR["`**OrderRepository**<br/>Order Data**"]
+    end
     
-    US --> UR
-    PS --> PR
-    CS --> CR
-    CS --> PR
-    CS --> UR
-    OS --> OR
-    OS --> UR
-    OS --> CS
+    subgraph Entities["🗃️ Entity Models<br/>(JPA Entities)"]
+        direction TB
+        UM[User Entity]
+        AM[Address Entity]
+        PM[Product Entity]
+        CM[CartItem Entity]
+        OM[Order Entity]
+        OIM[OrderItem Entity]
+    end
     
-    UC --> UReq
-    UC --> URes
-    PC --> PReq
-    PC --> PRes
-    CC --> CReq
-    OC --> ORes
+    subgraph DB["🗄️ Database<br/>(PostgreSQL/H2)"]
+        Database[(Database)]
+    end
     
-    UR --> UM
-    PR --> PM
-    CR --> CM
-    OR --> OM
+    %% Client to Controllers
+    HTTP -->|HTTP Requests| UC
+    HTTP -->|HTTP Requests| PC
+    HTTP -->|HTTP Requests| CC
+    HTTP -->|HTTP Requests| OC
     
-    UM --> AM
-    CM --> UM
-    CM --> PM
-    OM --> UM
-    OM --> OIM
-    OIM --> PM
+    %% Controllers to DTOs (Input)
+    UC -.->|Receives| UReq
+    PC -.->|Receives| PReq
+    CC -.->|Receives| CReq
     
-    style UC fill:#e1f5ff
-    style PC fill:#e1f5ff
-    style CC fill:#e1f5ff
-    style OC fill:#e1f5ff
-    style US fill:#fff4e1
-    style PS fill:#fff4e1
-    style CS fill:#fff4e1
-    style OS fill:#fff4e1
-    style UR fill:#e8f5e9
-    style PR fill:#e8f5e9
-    style CR fill:#e8f5e9
-    style OR fill:#e8f5e9
+    %% Controllers to Services
+    UC -->|Calls| US
+    PC -->|Calls| PS
+    CC -->|Calls| CS
+    OC -->|Calls| OS
+    
+    %% Services to DTOs (Output)
+    US -.->|Returns| URes
+    PS -.->|Returns| PRes
+    OS -.->|Returns| ORes
+    
+    %% Controllers to DTOs (Output)
+    UC -.->|Sends| URes
+    PC -.->|Sends| PRes
+    OC -.->|Sends| ORes
+    
+    %% Services to Repositories
+    US -->|Uses| UR
+    PS -->|Uses| PR
+    CS -->|Uses| CR
+    CS -->|Uses| PR
+    CS -->|Uses| UR
+    OS -->|Uses| OR
+    OS -->|Uses| UR
+    OS -->|Uses| CS
+    
+    %% Repositories to Entities
+    UR -->|Manages| UM
+    PR -->|Manages| PM
+    CR -->|Manages| CM
+    OR -->|Manages| OM
+    
+    %% Entity Relationships
+    UM -->|One-to-One| AM
+    CM -->|Many-to-One| UM
+    CM -->|Many-to-One| PM
+    OM -->|One-to-Many| OIM
+    OM -->|Many-to-One| UM
+    OIM -->|Many-to-One| OM
+    OIM -->|Many-to-One| PM
+    
+    %% Repositories to Database
+    UR -->|Queries| Database
+    PR -->|Queries| Database
+    CR -->|Queries| Database
+    OR -->|Queries| Database
+    
+    %% Styling
+    style Layer1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Layer2 fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    style Layer3 fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    style DTOs fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Entities fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style DB fill:#e0f2f1,stroke:#00796b,stroke-width:2px
+    style Client fill:#fff9c4,stroke:#f9a825,stroke-width:2px
 ```
+
+### Layer Responsibilities
+
+| Layer | Components | Responsibility | Example |
+|-------|-----------|----------------|---------|
+| **Presentation** | Controllers | Handle HTTP requests, validate input, return responses | `UserController` receives `UserRequest`, calls `UserService`, returns `UserResponse` |
+| **Business Logic** | Services | Implement business rules, orchestrate operations, transform data | `OrderService` validates cart, calculates total, creates order, clears cart |
+| **Data Access** | Repositories | Database operations, CRUD operations, queries | `UserRepository` finds, saves, updates `User` entities |
+| **Entity Models** | JPA Entities | Represent database tables, define relationships | `User` entity maps to `users` table with `Address` relationship |
+
+### Data Flow Example: Creating an Order
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant OC as OrderController
+    participant OS as OrderService
+    participant CS as CartService
+    participant UR as UserRepository
+    participant OR as OrderRepository
+    participant DB as Database
+    
+    Client->>OC: POST /api/orders<br/>(X-User-ID header)
+    OC->>OS: createOrder(userId)
+    
+    OS->>CS: getCart(userId)
+    CS->>DB: Query cart items
+    DB-->>CS: CartItem entities
+    CS-->>OS: List<CartItem>
+    
+    OS->>UR: findById(userId)
+    UR->>DB: SELECT user
+    DB-->>UR: User entity
+    UR-->>OS: User entity
+    
+    OS->>OS: Calculate total amount<br/>Create Order & OrderItems
+    
+    OS->>OR: save(order)
+    OR->>DB: INSERT order & items
+    DB-->>OR: Saved Order
+    OR-->>OS: Order entity
+    
+    OS->>CS: clearCart(userId)
+    CS->>DB: DELETE cart items
+    DB-->>CS: Confirmed
+    
+    OS->>OS: Map Order → OrderResponse
+    
+    OS-->>OC: OrderResponse DTO
+    OC-->>Client: 201 Created<br/>(JSON OrderResponse)
+```
+
+### Cross-Layer Dependencies
+
+- **OrderService → CartService**: Order creation uses cart service to get and clear cart items
+- **CartService → UserRepository & ProductRepository**: Cart operations need user and product data
+- **OrderService → UserRepository**: Order creation validates user existence
 
 ## 🚀 Getting Started
 
