@@ -1,7 +1,5 @@
 # 🛒 E-Commerce Application
 
-> **Note**: Update `dilshod1405` and `ecom-application` in the badge URLs below with your actual GitHub username and repository name.
-
 ![CI](https://github.com/dilshod1405/ecom-application/actions/workflows/ci.yml/badge.svg)
 ![Docker Build](https://github.com/dilshod1405/ecom-application/actions/workflows/docker-build.yml/badge.svg?branch=main)
 ![Release](https://github.com/dilshod1405/ecom-application/actions/workflows/release.yml/badge.svg?branch=main)
@@ -541,7 +539,7 @@ sequenceDiagram
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/dilshod1405/ecom-application.git
    cd ecom-application
    ```
 
@@ -818,16 +816,6 @@ graph LR
     style H fill:#e8f5e9
 ```
 
-### Workflow Status Badges
-
-Status badges are displayed at the top of the README. To update them with your repository:
-
-1. Replace `dilshod1405` with your GitHub username in the badge URLs
-2. Replace `ecom-application` with your repository name if different
-3. The badges will automatically show the current status of your workflows
-
-**Note**: Badges will only work after you push the code to GitHub and the workflows run at least once.
-
 ### Required GitHub Secrets
 
 For Docker Hub integration, configure these secrets in your repository:
@@ -995,7 +983,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📧 Contact
 
-For questions or support, please open an issue in the repository.
+For questions or feedback, feel free to open an issue in the repository or reach out via GitHub.
 
 ---
 
