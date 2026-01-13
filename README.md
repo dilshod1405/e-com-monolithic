@@ -2,9 +2,9 @@
 
 > **Note**: Update `dilshod1405` and `ecom-application` in the badge URLs below with your actual GitHub username and repository name.
 
-![CI](https://github.com/dilshod1405/ecom-application/workflows/CI/badge.svg)
-![Docker Build](https://github.com/dilshod1405/ecom-application/workflows/Docker%20Build/badge.svg)
-![Release](https://github.com/dilshod1405/ecom-application/workflows/Release/badge.svg)
+![CI](https://github.com/dilshod1405/ecom-application/actions/workflows/ci.yml/badge.svg)
+![Docker Build](https://github.com/dilshod1405/ecom-application/actions/workflows/docker-build.yml/badge.svg)
+![Release](https://github.com/dilshod1405/ecom-application/actions/workflows/release.yml/badge.svg)
 ![Java](https://img.shields.io/badge/Java-21-orange.svg?logo=openjdk)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0-brightgreen.svg?logo=spring)
 ![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg?logo=apache-maven)
