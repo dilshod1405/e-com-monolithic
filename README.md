@@ -1,10 +1,10 @@
 # 🛒 E-Commerce Application
 
-> **Note**: Update `your-username` and `ecom-application` in the badge URLs below with your actual GitHub username and repository name.
+> **Note**: Update `dilshod1405` and `ecom-application` in the badge URLs below with your actual GitHub username and repository name.
 
-![CI](https://github.com/your-username/ecom-application/workflows/CI/badge.svg)
-![Docker Build](https://github.com/your-username/ecom-application/workflows/Docker%20Build/badge.svg)
-![Release](https://github.com/your-username/ecom-application/workflows/Release/badge.svg)
+![CI](https://github.com/dilshod1405/ecom-application/workflows/CI/badge.svg)
+![Docker Build](https://github.com/dilshod1405/ecom-application/workflows/Docker%20Build/badge.svg)
+![Release](https://github.com/dilshod1405/ecom-application/workflows/Release/badge.svg)
 ![Java](https://img.shields.io/badge/Java-21-orange.svg?logo=openjdk)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0-brightgreen.svg?logo=spring)
 ![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg?logo=apache-maven)
@@ -822,7 +822,7 @@ graph LR
 
 Status badges are displayed at the top of the README. To update them with your repository:
 
-1. Replace `your-username` with your GitHub username in the badge URLs
+1. Replace `dilshod1405` with your GitHub username in the badge URLs
 2. Replace `ecom-application` with your repository name if different
 3. The badges will automatically show the current status of your workflows
 
@@ -837,7 +837,7 @@ For Docker Hub integration, configure these secrets in your repository:
 
 | Secret Name | Description | Example |
 |------------|-------------|---------|
-| `DOCKERHUB_USERNAME` | Your Docker Hub username | `yourusername` |
+| `DOCKERHUB_USERNAME` | Your Docker Hub username | `dilshod1405` |
 | `DOCKERHUB_TOKEN` | Docker Hub access token | `dckr_pat_...` |
 
 **To create a Docker Hub token:**
