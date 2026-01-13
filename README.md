@@ -1,8 +1,5 @@
 # 🛒 E-Commerce Application
 
-![CI](https://github.com/dilshod1405/ecom-application/actions/workflows/ci.yml/badge.svg)
-![Docker Build](https://github.com/dilshod1405/ecom-application/actions/workflows/docker-build.yml/badge.svg?branch=main)
-![Release](https://github.com/dilshod1405/ecom-application/actions/workflows/release.yml/badge.svg?branch=main)
 ![Java](https://img.shields.io/badge/Java-21-orange.svg?logo=openjdk)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0-brightgreen.svg?logo=spring)
 ![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg?logo=apache-maven)
