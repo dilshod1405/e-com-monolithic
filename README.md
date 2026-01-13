@@ -1,5 +1,17 @@
 # 🛒 E-Commerce Application
 
+> **Note**: Update `your-username` and `ecom-application` in the badge URLs below with your actual GitHub username and repository name.
+
+![CI](https://github.com/your-username/ecom-application/workflows/CI/badge.svg)
+![Build](https://github.com/your-username/ecom-application/workflows/CI/badge.svg?branch=main)
+![Docker Build](https://github.com/your-username/ecom-application/workflows/Docker%20Build/badge.svg)
+![Java](https://img.shields.io/badge/Java-21-orange.svg?logo=openjdk)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.0-brightgreen.svg?logo=spring)
+![Maven](https://img.shields.io/badge/Maven-3.9+-blue.svg?logo=apache-maven)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg?logo=docker)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-blue.svg?logo=postgresql)
+
 A modern, RESTful e-commerce application built with Spring Boot, providing comprehensive functionality for managing users, products, shopping carts, and orders.
 
 ## 📋 Table of Contents
@@ -806,13 +818,15 @@ graph LR
     style H fill:#e8f5e9
 ```
 
-### Workflow Status Badge
+### Workflow Status Badges
 
-Add this to your README to show CI status:
+Status badges are displayed at the top of the README. To update them with your repository:
 
-```markdown
-![CI](https://github.com/your-username/ecom-application/workflows/CI/badge.svg)
-```
+1. Replace `your-username` with your GitHub username in the badge URLs
+2. Replace `ecom-application` with your repository name if different
+3. The badges will automatically show the current status of your workflows
+
+**Note**: Badges will only work after you push the code to GitHub and the workflows run at least once.
 
 ### Required GitHub Secrets
 
